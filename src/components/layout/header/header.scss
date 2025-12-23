@@ -1,0 +1,142 @@
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+	background-color: #fff;
+	box-shadow: 0 6px 30px rgba(17, 24, 39, 0.08);
+	padding: 18px 0;
+	transition: box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+
+	// .header__container
+	&__container {
+		display: flex;
+		align-items: center;
+		gap: 28px;
+		justify-content: space-between;
+	}
+
+	// .header__logo
+	&__logo {
+		display: flex;
+		align-items: center;
+		flex-shrink: 0;
+		text-decoration: none;
+		gap: 12px;
+		color: #111827;
+		transition: transform 0.25s ease;
+
+		&:hover {
+			transform: translateY(-1px);
+		}
+	}
+
+	// Лого-маркер
+	&__logo-mark {
+		width: 44px;
+		height: 44px;
+		border-radius: 12px;
+		display: grid;
+		place-items: center;
+		background: linear-gradient(135deg, $accent 0%, $accentDark 100%);
+		color: #fff;
+		font-weight: 700;
+		font-size: 20px;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+	}
+
+	&__logo-text {
+		display: flex;
+		flex-direction: column;
+		line-height: 1.1;
+		gap: 4px;
+	}
+
+	&__logo-title {
+		font-family: 'Playfair Display', 'Georgia', serif;
+		font-size: 24px;
+		font-weight: 700;
+		letter-spacing: 0.4px;
+		color: #111827;
+
+		@media (max-width: toEm($tablet)) {
+			font-size: 22px;
+		}
+	}
+
+	&__logo-subtitle {
+		font-family: $fontFamily;
+		font-size: 12px;
+		color: #6b7280;
+		text-transform: uppercase;
+		letter-spacing: 1.2px;
+		font-weight: 600;
+	}
+
+	&__nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 32px;
+		flex: 1 1 auto;
+		padding-left: 8px;
+
+		> .header__logo {
+			flex-shrink: 0;
+		}
+
+		.menu {
+			margin-left: auto;
+		}
+
+		@media (max-width: toEm($tablet)) {
+			gap: 18px;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		flex-shrink: 0;
+
+		@media (max-width: toEm(900)) {
+			display: none;
+		}
+	}
+
+	&__phone {
+		color: #111827;
+		font-weight: 600;
+		text-decoration: none;
+		transition: color 0.2s ease;
+
+		&:hover {
+			color: $accent;
+		}
+	}
+
+	&__cta {
+		border: none;
+		border-radius: 999px;
+		padding: 12px 18px;
+		background: linear-gradient(135deg, $accent 0%, $accentDark 100%);
+		color: #fff;
+		font-weight: 700;
+		font-size: 14px;
+		cursor: pointer;
+		transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+		box-shadow: 0 12px 28px rgba(79, 157, 242, 0.35);
+
+		&:hover {
+			transform: translateY(-1px);
+			box-shadow: 0 14px 34px rgba(79, 157, 242, 0.4);
+		}
+
+		&:active {
+			transform: translateY(0);
+			opacity: 0.9;
+		}
+	}
+}

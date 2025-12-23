@@ -1,0 +1,20 @@
+// ====== Component ======
+.splittype {
+  /* Стили компонента */
+}
+
+// Стили для разбитого текста
+[data-fls-splittype] {
+	.line {
+		overflow: hidden;
+		display: block;
+	}
+	
+	.word {
+		display: inline-block;
+	}
+	
+	.char {
+		display: inline-block;
+	}
+}

@@ -1,0 +1,187 @@
+<link rel="stylesheet" href="@components/layout/popup/popup.scss">
+<script type="module" src="@components/layout/popup/popup-pricing.js"></script>
+<script type="module" src="@components/layout/popup/popup-form-reset.js"></script>
+<!-- Модалка с формой -->
+<div data-fls-popup="contact-form" aria-hidden="true" class="popup">
+	<div data-fls-popup-wrapper class="popup__wrapper">
+		<div data-fls-popup-body class="popup__body">
+			<button data-fls-popup-close type="button" class="popup__close"><svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.850056" d="M1.73333 1.48883L21.5469 21.0288" stroke="#979797" stroke-linecap="square" /><path opacity="0.850056" d="M21.2667 1.48883L1.45309 21.0288" stroke="#979797" stroke-linecap="square" /></svg></button>
+			<div data-fls-popup-content class="popup__content">
+				<h2 class="popup__title">Связаться со мной</h2>
+				<p class="popup__subtitle">Заполните форму и я свяжусь с вами в ближайшее время</p>
+				<form data-fls-form="dev" class="popup__form" aria-label="Форма обратной связи">
+					<div class="popup__form-item">
+						<label for="contact-name" class="visually-hidden">Ваше имя</label>
+						<input 
+							id="contact-name"
+							data-fls-input 
+							data-fls-form-validatenow 
+							required 
+							autocomplete="name" 
+							type="text" 
+							name="name" 
+							data-fls-form-errtext="Введите ваше имя" 
+							placeholder="Ваше имя" 
+							aria-required="true"
+							class="input">
+					</div>
+					<div class="popup__form-item">
+						<label for="contact-email" class="visually-hidden">Email</label>
+						<input 
+							id="contact-email"
+							data-fls-input 
+							data-fls-form-validatenow 
+							required 
+							autocomplete="email" 
+							type="email" 
+							name="email" 
+							data-fls-form-errtext="Введите корректный email" 
+							placeholder="Email" 
+							aria-required="true"
+							class="input">
+					</div>
+					<div class="popup__form-item">
+						<label for="contact-phone" class="visually-hidden">Телефон</label>
+						<input 
+							id="contact-phone"
+							data-fls-input 
+							data-fls-input-mask="+7 (999) 999-99-99" 
+							data-fls-form-validatenow 
+							required 
+							autocomplete="tel" 
+							type="tel" 
+							name="phone" 
+							data-fls-form-errtext="Введите номер телефона" 
+							placeholder="Телефон" 
+							aria-required="true"
+							class="input">
+					</div>
+					<div class="popup__form-item">
+						<label for="contact-message" class="visually-hidden">Ваше сообщение</label>
+						<textarea 
+							id="contact-message"
+							data-fls-input 
+							data-fls-input-autoheight 
+							data-fls-form-validatenow 
+							required 
+							autocomplete="off" 
+							name="message" 
+							data-fls-form-errtext="Введите сообщение" 
+							placeholder="Ваше сообщение" 
+							aria-required="true"
+							class="input" 
+							rows="5"></textarea>
+					</div>
+					<button type="submit" class="button popup__form-button" aria-label="Отправить сообщение">Отправить</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Модалка с формой записи на занятие -->
+<div data-fls-popup="pricing-form" aria-hidden="true" class="popup">
+	<div data-fls-popup-wrapper class="popup__wrapper">
+		<div data-fls-popup-body class="popup__body">
+			<button data-fls-popup-close type="button" class="popup__close"><svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.850056" d="M1.73333 1.48883L21.5469 21.0288" stroke="#979797" stroke-linecap="square" /><path opacity="0.850056" d="M21.2667 1.48883L1.45309 21.0288" stroke="#979797" stroke-linecap="square" /></svg></button>
+			<div data-fls-popup-content class="popup__content">
+				<h2 class="popup__title">Записаться на занятие</h2>
+				<p class="popup__subtitle">Заполните форму и выберите услугу</p>
+				<form data-fls-form="dev" class="popup__form popup__form--pricing" aria-label="Форма записи на занятие английским языком">
+					<div class="popup__form-item">
+						<label for="pricing-name" class="visually-hidden">Ваше имя</label>
+						<input 
+							id="pricing-name"
+							data-fls-input 
+							data-fls-form-validatenow 
+							required 
+							autocomplete="name" 
+							type="text" 
+							name="name" 
+							data-fls-form-errtext="Введите ваше имя" 
+							placeholder="Ваше имя" 
+							aria-required="true"
+							class="input">
+					</div>
+					<div class="popup__form-item">
+						<label for="pricing-email" class="visually-hidden">Email</label>
+						<input 
+							id="pricing-email"
+							data-fls-input 
+							data-fls-form-validatenow 
+							required 
+							autocomplete="email" 
+							type="email" 
+							name="email" 
+							data-fls-form-errtext="Введите корректный email" 
+							placeholder="Email" 
+							aria-required="true"
+							class="input">
+					</div>
+					<div class="popup__form-item">
+						<label for="pricing-phone" class="visually-hidden">Телефон</label>
+						<input 
+							id="pricing-phone"
+							data-fls-input 
+							data-fls-input-mask="+7 (999) 999-99-99" 
+							data-fls-form-validatenow 
+							required 
+							autocomplete="tel" 
+							type="tel" 
+							name="phone" 
+							data-fls-form-errtext="Введите номер телефона" 
+							placeholder="Телефон" 
+							aria-required="true"
+							class="input">
+					</div>
+					<div class="popup__form-item">
+						<label for="service-select" class="visually-hidden">Выберите услугу</label>
+						<select 
+							id="service-select"
+							data-fls-select 
+							name="service_plan" 
+							data-fls-select-modif="form"
+							data-fls-form-validatenow
+							required
+							aria-required="true"
+							aria-label="Выберите услугу">
+							<option value="" data-price="0" selected disabled>Выберите услугу</option>
+							<option value="Индивидуальная программа обучения" data-price="10245">Индивидуальная программа обучения — 10 245 руб.</option>
+							<option value="Подготовка к международным экзаменам" data-price="5665">Подготовка к международным экзаменам — 5 665 руб.</option>
+							<option value="Развитие разговорных навыков" data-price="2835">Развитие разговорных навыков — 2 835 руб.</option>
+							<option value="Помощь в написании эссе и работ" data-price="15136">Помощь в написании эссе и работ — 15 136 руб.</option>
+							<option value="Работа над произношением и интонацией" data-price="8965">Работа над произношением и интонацией — 8 965 руб.</option>
+							<option value="Практика общения с носителями" data-price="3789">Практика общения с носителями — 3 789 руб.</option>
+						</select>
+					</div>
+					<div class="popup__form-item popup__form-item--total">
+						<div class="popup__total">
+							<span class="popup__total-label">Итого:</span>
+							<span class="popup__total-price" id="total-price">0 руб.</span>
+						</div>
+					</div>
+					<button type="submit" class="button popup__form-button" aria-label="Отправить заявку на запись">Отправить заявку</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Модалка с сообщением об успешной отправке -->
+<div data-fls-popup="success" aria-hidden="true" class="popup">
+	<div data-fls-popup-wrapper class="popup__wrapper">
+		<div data-fls-popup-body class="popup__body">
+			<button data-fls-popup-close type="button" class="popup__close"><svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.850056" d="M1.73333 1.48883L21.5469 21.0288" stroke="#979797" stroke-linecap="square" /><path opacity="0.850056" d="M21.2667 1.48883L1.45309 21.0288" stroke="#979797" stroke-linecap="square" /></svg></button>
+			<div data-fls-popup-content class="popup__content popup__content--success">
+				<div class="popup__success-icon">
+					<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+						<circle cx="32" cy="32" r="30" stroke="#4f9df2" stroke-width="4"/>
+						<path d="M20 32 L28 40 L44 24" stroke="#4f9df2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+				<h2 class="popup__title">Ваша заявка отправлена</h2>
+				<p class="popup__text">Спасибо за обращение. Я свяжусь с вами в ближайшее время.</p>
+			</div>
+		</div>
+	</div>
+</div>

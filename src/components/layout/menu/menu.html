@@ -1,0 +1,37 @@
+<div class="header__menu menu">
+	<button type="button" data-fls-menu class="menu__icon icon-menu" aria-label="Открыть меню" aria-expanded="false"><span></span></button>
+	<nav class="menu__body" aria-label="Основная навигация">
+		<button type="button" data-fls-menu class="menu__close" aria-label="Закрыть меню">
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+			</svg>
+		</button>
+		<ul class="menu__list">
+			<each loop='item in [
+					{"href": "#hero","ancor": "Главная"},
+					{"href": "#about","ancor": "Обо мне"},
+					{"href": "#services","ancor": "Услуги"},
+					{"href": "#learning","ancor": "Этапы"},
+					{"href": "#contacts","ancor": "Связь с нами"}
+				]'>
+				<if condition="'[[active]]' === '[[item.ancor]]'">
+					<li class="menu__item">
+						<a href="[[item.href]]" data-fls-scrollto="[[item.href]]" class="menu__link menu__link--active">[[item.ancor]]</a>
+					</li>
+				</if>
+				<else>
+					<li class="menu__item">
+						<a href="[[item.href]]" data-fls-scrollto="[[item.href]]" class="menu__link">[[item.ancor]]</a>
+					</li>
+				</else>
+			</each>
+		</ul>
+	</nav>
+</div>
+
+<!-- 
+<fetch url="@components/layout/menu/menu.json">
+	<each loop='item in response'>
+	</each>
+</fetch>
+-->

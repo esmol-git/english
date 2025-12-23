@@ -1,0 +1,57 @@
+ <head>
+	<if condition="'[[preloader.enable]]' === 'true'">
+		<include src="@components/effects/preloader/preloader.html" locals='{"once":"[[preloader.once]]"}'></include>
+	</if>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="theme-color" content="#4f9df2">
+	<include src="@components/layout/head/fonts-preload.html"></include>
+	<link rel="stylesheet" href="@styles/fonts/fonts.css">
+	<link rel="stylesheet" href="@styles/fonts/iconfont.css">
+	<link rel="stylesheet" href="@styles/style.scss">
+	<link rel="shortcut icon" href="@img/favicon.png">
+	<if condition="'[[keywords]]' !== ''">
+		<meta name="keywords" content="[[keywords]]">
+	</if>
+	<if condition="'[[description]]' !== ''">
+		<meta name="description" content="[[description]]">
+		<meta property="og:description" content="[[description]]">
+	</if>
+	<meta property="og:title" content="[[title]]">
+	<meta property="og:type" content="website">
+	<meta property="og:locale" content="ru_RU">
+	<meta property="og:image" content="">
+	<meta property="og:url" content="">
+	<meta name="author" content="Educate - Репетитор английского языка">
+	<meta name="robots" content="index, follow">
+	<meta name="googlebot" content="index, follow">
+	<link rel="canonical" href="">
+	<title>[[title]]</title>
+	
+	<!-- Schema.org для репетитора английского -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "EducationalOrganization",
+		"name": "Educate - Репетитор английского языка",
+		"description": "Профессиональный репетитор английского языка. Индивидуальные онлайн-занятия, подготовка к международным экзаменам, развитие разговорных навыков.",
+		"url": "",
+		"image": "",
+		"offers": {
+			"@type": "Offer",
+			"name": "Индивидуальные занятия английским языком",
+			"description": "Онлайн-занятия с профессиональным репетитором",
+			"priceCurrency": "RUB",
+			"availability": "https://schema.org/InStock"
+		},
+		"knowsAbout": [
+			"Английский язык",
+			"Подготовка к IELTS",
+			"Подготовка к TOEFL",
+			"Разговорный английский",
+			"Грамматика английского языка",
+			"Произношение английского"
+		]
+	}
+	</script>
+</head>

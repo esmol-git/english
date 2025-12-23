@@ -1,0 +1,25 @@
+<template src="@components/templates/main/main.html" locals='{
+		"title":"Репетитор английского языка - Индивидуальные онлайн-занятия | Educate", 
+		"lang":"ru",
+		"preloader": {
+			"enable":"false",
+			"once":"false"
+		},
+		"keywords":"репетитор английского, английский язык онлайн, индивидуальные занятия английским, подготовка к IELTS, подготовка к TOEFL, разговорный английский, репетитор по английскому языку, изучение английского, английский для начинающих, английский язык с носителем", 
+		"description":"Профессиональный репетитор английского языка. Индивидуальные онлайн-занятия, подготовка к международным экзаменам (IELTS, TOEFL), развитие разговорных навыков. Более 10 лет опыта. Запишитесь на пробное занятие!"
+	}'>
+<｜tool▁call▁begin｜>
+read_file
+	<block name="header">
+		<include src="@components/layout/header/header.html" locals='{"active":"Home"}'></include>
+	</block>
+	<block name="main">
+		<include src="@components/pages/index/index.html" locals='{}'></include>
+	</block>
+	<block name="footer">
+		<include src="@components/layout/footer/footer.html" locals='{}'></include>
+	</block>
+	<block name="popup">
+		<include src="@components/layout/popup/popup.html"></include>
+	</block>
+</template>

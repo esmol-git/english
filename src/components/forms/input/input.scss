@@ -1,0 +1,83 @@
+//<INPUT>
+// Сниппет (HTML): inp
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+.input {
+	border-radius: 0 !important;
+	width: 100%;
+	display: block;
+	padding: 10px;
+	border: 1px solid #eee;
+	caret-color: inherit;
+	transition: all 0.3s ease;
+	
+	&.--form-focus {
+		border-color: $accent;
+	}
+	
+	&.--form-error {
+		border-color: #e74c3c !important;
+		background-color: #fff5f5;
+		
+		&:focus {
+			border-color: #e74c3c !important;
+			box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1) !important;
+		}
+	}
+	
+	&.--form-success {
+		border-color: #27ae60 !important;
+		background-color: #f0fdf4;
+		
+		&:focus {
+			border-color: #27ae60 !important;
+			box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1) !important;
+		}
+	}
+}
+
+[data-fls-form-error] {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	color: #e74c3c;
+	font-size: 13px;
+	margin-top: 8px;
+	line-height: 1.4;
+	animation: slideDown 0.3s ease;
+	
+	&::before {
+		content: '⚠';
+		font-size: 16px;
+		flex-shrink: 0;
+	}
+}
+
+@keyframes slideDown {
+	from {
+		opacity: 0;
+		transform: translateY(-5px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+.input[placeholder]:not([data-fls-placeholder-nohiden]) {
+	&::placeholder {
+		transition: opacity 0.3s;
+	}
+	&:focus::placeholder {
+		opacity: 0;
+	}
+}
+textarea.input {
+	resize: vertical;
+	padding: 0px 0px;
+}
