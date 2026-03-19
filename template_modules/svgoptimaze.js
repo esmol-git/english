@@ -1,26 +1,5 @@
-// Настройки шаблона
-import templateConfig from '../template.config.js'
-// Логгер
-import logger from './logger.js'
-
-import path from 'node:path'
-import { outlineSvg } from '@davestewart/outliner'
-import { optimize } from 'svgo'
-import { readFile, writeFile } from 'fs/promises';
-import SVGFixer from 'oslllo-svg-fixer'
-
-// Оптимизация SVG-иконок
-export async function svgOptimaze(iconsFiles) {
-	const srcDir = 'src/assets/svgicons';
-	const distDir = 'src/assets/svgicons/fixed';
-
-	logger('_ICONS_OPT_START')
-	try {
-		await SVGFixer(srcDir, distDir, { throwIfDestinationDoesNotExist: false }).fix().then(() => {
-			logger('_ICONS_OPT_END')
-		})
-	} catch (err) {
-		console.log(err)
-		throw err;
-	}
-}
+kward":
+                    k[o3] === y2 ? a3.end++ : o3 = r2;
+                    break;
+                  default:
+                    k[o3] !== b[o3] && (k[o3 + 1] !== y2 && k[o3 + 1] !== l2 && void 0 !== k[o3 + 1] || (b[o3] !== l2 || b[o3 + 1] !== y2) && b[o3] !== y2 ? b[o3 + 1] === y2 && b[o3] === k[o3 + 1] ? (m2 = "insertText", g2.push(k[o3]), a3.begin--, a3.end--) : k[o3] !== l2 && k[o3] !== y2 && (k[o3 + 1] === y2 || b[o3] !== k[o3] && b[o3 + 1] === k[o3 + 1]) ? (m2 = "insertReplacementText", g2.push(k[o3]), a3.begin--) : k[o3] === y2 ? (m2 = "deleteContentBackward", (c.isMask.call(t3, c.translatePosition.call(t3, o3), true) || b[o3] === n3.radixPoint) && a3.end++) : o3 = r2 : (m2 = "insertText", g2.push(k[o3]), a3.begi

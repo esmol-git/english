@@ -1,77 +1,71 @@
-{
-	"_BUILD_DONE": "Проект собран\n\nСпасибо за использование Чертогов Фрилансера ❤️\n",
-	"_DEV_START": "(!)Старт режима разработчика",
-	"_DEV_DONE": "Режим разработчика запущен\n\nПриятной работы с Чертогами Фрилансера ❤️\n",
-	"_DEV_HOST_ADDRESS": "Адрес локального сервера: @@",
-	"_DEV_HOST_IP_ADDRESS": "IP-адрес сервера: @@",
-	"_DEV_HOST_QRCODE": "QR-код сервера:",
-	"_VS_SETTINGS": "Файл конфигурации путей создан",
-	"_VS_SNIPPETS": "Файл конфигурации сниппетов создан",
-	"_ICONS_OPT_START": "(!)Оптимизация иконок запущена",
-	"_ICONS_OPT_END": "Оптимизация иконок завершена",
-	"_FONTS_START": "(!)Конвертация шрифтов запущена",
-	"_FONTS_DONE": "Подключено локальных шрифтов: @@",
-	"_FONTS_WARN": "(!)Для обновления шрифтов выполните команду npm run fonts",
-	"_FONTS_ICONS_DONE": "Иконковый шрифт создан",
-	"_FONTS_ICONS_ADD_DONE": "Иконковый шрифт подключен",
-	"_IMG_JS_DEV_DONE": "JS-файлы разработчика созданы",
-	"_IMG_CSS_DEV_DONE": "CSS-файлы разработчика созданы",
-	"_IMG_START": "(!)Начата обработка изображений",
-	"_IMG_OPT_DONE": "Оптимизировано изображений: @@",
-	"_IMG_DONE": "Обработка изображений завершена",
-	"_IMG_COPY_ERR": "(!!)Не удалось скопировать папку img: @@",
-	"_IMG_ERR": "(!!)Изображение src@@ не существует",
-	"_NAVPAN_DONE": "Навигационная панель подключена",
-	"_NAVPAN_WARN": "(!)Подключена навигационная панель",
-	"_CREATE_PAGE_ERROR": "(!!)Укажите имя страницы латиницей, без цифр, пробелов и символов",
-	"_CREATE_PAGE_EXIST": "(!!)Страница '@@' уже существует\nВыберите другое имя",
-	"_CREATE_PAGE_DONE": "Страница @@ создана",
-	"_CREATE_COMPONENT_ERROR": "(!!)Укажите имя компонента латиницей, без цифр, пробелов и символов",
-	"_CREATE_COMPONENT_EXIST": "(!!)Компонент '@@' уже существует в @@\nВыберите другое имя",
-	"_CREATE_COMPONENT_DONE": "Компонент @@ создан",
-	"_GIT_DEPLOY_START": "(!)Загрузка в репозиторий начата",
-	"_GIT_DEPLOY_DONE": "Загрузка в репозиторий завершена",
-	"_STAT_TITLE": "(?)Статистика проекта @@:",
-	"_STAT_NONE": "(!)Статистики нет\n",
-	"_STAT_ON": "Сбор статистики начат",
-	"_STAT_CLEAR": "Статистика проекта очищена",
-	"_STAT_OFF": "(!!)Сбор статистики выключен\n",
-	"_STAT_SHOW_START": "Начало работы над проектом: @@",
-	"_STAT_SHOW_END": "Конец работы над проектом: @@",
-	"_STAT_SHOW_TIME": "Времени потрачено на проект: @@",
-	"_STAT_SHOW_FILES": "Отредактировано файлов: @@",
-	"_STAT_SHOW_SESSIONS": "Всего сессий: @@\n",
-	"_STAT_SHOW_TIME_TITLE": "Потраченное время по дням:",
-	"_STAT_SHOW_FILES_TITLE": "Список редактированных файлов:",
-	"_FLS_WATCHER_VIEW": "[Наблюдатель]: Я вижу @@, добавил класс --watcher-view",
-	"_FLS_WATCHER_NOVIEW": "[Наблюдатель]: Я не вижу @@, убрал класс --watcher-view",
-	"_FLS_WATCHER_SLEEP": "[Наблюдатель]: Нет объектов для слежения",
-	"_FLS_WATCHER_START_WATCH": "[Наблюдатель]: Проснулся, слежу за объектами (@@)",
-	"_FLS_WATCHER_STOP_WATCH": "[Наблюдатель]: Я перестал следить за @@",
-	"_FLS_WATCHER_NOPARENT": "(!)[Наблюдатель]: Эмм... родительского объекта @@ нет на странице",
-	"_FLS_WATCHER_WARN_MARGIN": "(!)[Наблюдатель]: Ой, настройку data-fls-watcher-margin нужно задавать в PX или %",
-	"_FLS_POPUP_START": "[Попапос]: Проснулся",
-	"_FLS_POPUP_OPEN": "[Попапос]: Открыл попап @@",
-	"_FLS_POPUP_CLOSE": "[Попапос]: Закрыл попап @@",
-	"_FLS_POPUP_NOPOPUP": "(!)[Попапос]: Ой, такого попапа нет. Проверьте корректность селектора, или подключите HTML попапов",
-	"_FLS_POPUP_NOATTR": "(!)[Попапос]: Ой, не заполнен атрибут data-fls-popup",
-	"_FLS_TABS_START": "[Табы]: Проснулся. Групп табов на странице: @@",
-	"_FLS_SPOLLERS_START": "[Спойлеры]: Проснулся. Групп спойлеров на странице: @@",
-	"_FLS_FULLPAGE_START": "[ФулПейдж]: Проснулся. Секций: @@",
-	"_FLS_FULLPAGE_GOTO": "[ФулПейдж]: Перехожу к секции: @@",
-	"_FLS_SCROLLTO_GOTO": "[СкролДо]: Юхуу... едем к @@",
-	"_FLS_SCROLLTO_WARN": "(!)[СкролДо]: Ой... Такого блока нет на странице: @@",
-	"_FLS_DIGCOUNTER_ANIM": "[Счетчик]: Анимирую",
-	"_FLS_FORM_AJAX_ERR": "[Форма]: Ошибка Ajax-запроса",
-	"_FLS_FORM_VALIDATE": "[Форма]: Проверяю форму",
-	"_FLS_FORM_SEND": "[Форма]: Отправил форму",
-	"_FLS_SELECT_START": "[Селект]: Проснулся, построил селектов: @@",
-	"_FLS_SELECT_SLEEP": "[Селект]: Сплю, нет ни одного select",
-	"_FLS_MOUSE_START": "[Мышь]: Проснулся. Слежу за объектами: @@",
-	"_FLS_MOUSE_SLEEP": "[Мышь]: Сплю, нет ни одного объекта",
-	"_FLS_DA_START": "[Динамический]: Проснулся, вижу @@ объектов для перемещения",
-	"_FLS_DA_MOVETO": "[Динамический]: Переместил @@ в @@",
-	"_FLS_DA_MOVEBACK": "[Динамический]: Вернул @@ в @@",
-	"_FLS_DA_ADDNODE": "(!)[Динамический]: Добавьте объект для перемещения",
-	"_FLS_DA_NONODE": "(!)[Динамический]: Не нахожу объект @@ для перемещения туда"
-}
+ u2.opts, h = u2.dependencyLib, v = i3.slice(), m = "", g = -1, y = d.skipOptionalPartCharacter;
+            d.skipOptionalPartCharacter = "", o.resetMaskSet.call(u2, false), u2.clicked = 0, g = d.radixPoint ? o.determineNewCaretPosition.call(u2, { begin: 0, end: 0 }, false, false === d.__financeInput ? "radixFocus" : void 0).begin : 0, f2.p = g, u2.caretPos = { begin: g };
+            var k = [], b = u2.caretPos;
+            if (v.forEach((function(e4, t4) {
+              if (void 0 !== e4) {
+                var i4 = new h.Event("_checkval");
+                i4.key = e4, m += e4;
+                var r3 = o.getLastValidPosition.call(u2, void 0, true);
+                !(function(e5, t5) {
+                  for (var n4 = s.getMaskTemplate.call(u2, true, 0).slice(e5, o.seekNext.call(u2, e5, false, false)).join("").replace(/'/g, ""), i5 = n4.indexOf(t5); i5 > 0 && " " === n4[i5 - 1]; ) i5--;
+                  var a2 = 0 === i5 && !o.isMask.call(u2, e5) && (s.getTest.call(u2, e5).match.nativeDef === t5.charAt(0) || true === s.getTest.call(u2, e5).match.static && s.getTest.call(u2, e5).match.nativeDef === "'" + t5.charAt(0) || " " === s.getTest.call(u2, e5).match.nativeDef && (s.getTest.call(u2, e5 + 1).match.nativeDef === t5.charAt(0) || true === s.getTest.call(u2, e5 + 1).match.static && s.getTest.call(u2, e5 + 1).match.nativeDef === "'" + t5.charAt(0)));
+                  if (!a2 && i5 > 0 && !o.isMask.call(u2, e5, false, true)) {
+                    var r4 = o.seekNext.call(u2, e5);
+                    u2.caretPos.begin < r4 && (u2.caretPos = { begin: r4 });
+                  }
+                  return a2;
+                })(g, m) ? (c2 = a.EventHandlers.keypressEvent.call(u2, i4, true, false, n3, u2.caretPos.begin)) && (g = u2.caretPos.begin + 1, m = "") : c2 = a.EventHandlers.keypressEvent.call(u2, i4, true, false, n3, r3 + 1), c2 ? (void 0 !== c2.pos && f2.validPositions[c2.pos] && true === f2.validPositions[c2.pos].match.static && void 0 === f2.validPositions[c2.pos].alternation && (k.push(c2.pos), u2.isRTL || (c2.forwardPosition = c2.pos + 1)), p.call(u2, void 0, o.getBuffer.call(u2), c2.forwardPosition, i4, false), u2.caretPos = { begin: c2.forwardPosition, end: c2.forwardPosition }, b = u2.caretPos) : void 0 === f2.validPositions[t4] && v[t4] === s.getPlaceholder.call(u2, t4) && o.isMask.call(u2, t4, true) ? u2.caretPos.begin++ : u2.caretPos = b;
+              }
+            })), k.length > 0) {
+              var x, w, P = o.seekNext.call(u2, -1, void 0, false);
+              if (!l.isComplete.call(u2, o.getBuffer.call(u2)) && k.length <= P || l.isComplete.call(u2, o.getBuffer.call(u2)) && k.length > 0 && k.length !== P && 0 === k[0]) {
+                for (var S = P; void 0 !== (x = k.shift()); ) if (x < S) {
+                  var O = new h.Event("_checkval");
+                  if ((w = f2.validPositions[x]).generatedInput = true, O.key = w.input, (c2 = a.EventHandlers.keypressEvent.call(u2, O, true, false, n3, S)) && void 0 !== c2.pos && c2.pos !== x && f2.validPositions[c2.pos] && true === f2.validPositions[c2.pos].match.static) k.push(c2.pos);
+                  else if (!c2) break;
+                  S++;
+                }
+              }
+            }
+            t3 && p.call(u2, e3, o.getBuffer.call(u2), c2 ? c2.forwardPosition : u2.caretPos.begin, r2 || new h.Event("checkval"), r2 && ("input" === r2.type && u2.undoValue !== o.getBuffer.call(u2).join("") || "paste" === r2.type)), d.skipOptionalPartCharacter = y;
+          }
+          function p(e3, t3, n3, i3, a2) {
+            var s2 = e3 ? e3.inputmask : this, c2 = s2.opts, u2 = s2.dependencyLib;
+            if (i3 && "function" == typeof c2.onBeforeWrite) {
+              var f2 = c2.onBeforeWrite.call(s2, i3, t3, n3, c2);
+              if (f2) {
+                if (f2.refreshFromBuffer) {
+                  var p2 = f2.refreshFromBuffer;
+                  l.refreshFromBuffer.call(s2, true === p2 ? p2 : p2.start, p2.end, f2.buffer || t3), t3 = o.getBuffer.call(s2, true);
+                }
+                void 0 !== n3 && (n3 = void 0 !== f2.caret ? f2.caret : n3);
+              }
+            }
+            if (void 0 !== e3 && (e3.inputmask._valueSet(t3.join("")), void 0 === n3 || void 0 !== i3 && "blur" === i3.type || o.caret.call(s2, e3, n3, void 0, void 0, void 0 !== i3 && "keydown" === i3.type && (i3.key === r.keys.Delete || i3.key === r.keys.Backspace)), void 0 === e3.inputmask.writeBufferHook || e3.inputmask.writeBufferHook(n3), true === a2)) {
+              var d = u2(e3), h = e3.inputmask._valueGet();
+              e3.inputmask.skipInputEvent = true, d.trigger("input"), setTimeout((function() {
+                h === o.getBufferTemplate.call(s2).join("") ? d.trigger("cleared") : true === l.isComplete.call(s2, t3) && d.trigger("complete");
+              }), 0);
+            }
+          }
+        }, 2394: function(e2, t2, n2) {
+          Object.defineProperty(t2, "__esModule", { value: true }), t2.default = void 0;
+          var i2 = v(n2(3976)), a = v(n2(7392)), r = v(n2(4963)), o = n2(9716), l = v(n2(9380)), s = n2(7760), c = n2(157), u = n2(2391), f = n2(8711), p = n2(7215), d = n2(4713);
+          function h(e3) {
+            return h = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(e4) {
+              return typeof e4;
+            } : function(e4) {
+              return e4 && "function" == typeof Symbol && e4.constructor === Symbol && e4 !== Symbol.prototype ? "symbol" : typeof e4;
+            }, h(e3);
+          }
+          function v(e3) {
+            return e3 && e3.__esModule ? e3 : { default: e3 };
+          }
+          var m = l.default.document, g = "_inputmask_opts";
+          function y(e3, t3, n3) {
+            if (!(this instanceof y)) return new y(e3, t3, n3);
+            this.dependencyLib = r.default, this.el = void 0, this.events = {}, this.maskset = void 0, true !== n3 && ("[object Object]" === Object.prototype.toString.call(e3) ? t3 = e3 : (t3 = t3 || {}, e3 && (t3.alias = e3)), this.opts = r.default.extend(true, {}, this.defaults, t3), this.noMasksCache = t3 && void 0 !== t3.definitions, this.userOptions = t3 || {}, k(this.opts.alias, t3, this.opts)), this.refreshValue = false, this.undoValue = void 0, this.$el = void 0, this.skipInputEvent = false, this.validationEvent = false, this.ignorable = false, this.maxLength, this.mouseEnter = false, this.clicked = 0, this.originalPlaceholder = void 0, this.isComposing = false, this.hasAlternator = false;
+          }
+          function k(e3, t3, n3) {
+            var i3 = y.prototype.aliases[e3];
+            return i3 ? (i3.alias && k(i3.alias, void 0, n3), r.default.extend(true, n3, i3), r.default.extend(true, n3, t3), true) : (null === n3.mask && (n3.mask =
