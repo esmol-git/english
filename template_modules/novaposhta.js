@@ -1,64 +1,53 @@
-,
-        afterClose: function() {
-        }
-      }
-    };
-    this.youTubeCode;
-    this.isOpen = false;
-    this.targetOpen = {
-      selector: false,
-      element: false
-    };
-    this.previousOpen = {
-      selector: false,
-      element: false
-    };
-    this.lastClosed = {
-      selector: false,
-      element: false
-    };
-    this._dataValue = false;
-    this.hash = false;
-    this._reopen = false;
-    this._selectorOpen = false;
-    this.lastFocusEl = false;
-    this._focusEl = [
-      "a[href]",
-      'input:not([disabled]):not([type="hidden"]):not([aria-hidden])',
-      "button:not([disabled]):not([aria-hidden])",
-      "select:not([disabled]):not([aria-hidden])",
-      "textarea:not([disabled]):not([aria-hidden])",
-      "area[href]",
-      "iframe",
-      "object",
-      "embed",
-      "[contenteditable]",
-      '[tabindex]:not([tabindex^="-"])'
-    ];
-    this.options = {
-      ...config3,
-      ...options,
-      classes: {
-        ...config3.classes,
-        ...options?.classes
-      },
-      hashSettings: {
-        ...config3.hashSettings,
-        ...options?.hashSettings
-      },
-      on: {
-        ...config3.on,
-        ...options?.on
-      }
-    };
-    this.bodyLock = false;
-    this.options.init ? this.initPopups() : null;
-  }
-  initPopups() {
-    this.buildPopup();
-    this.eventsPopup();
-  }
-  buildPopup() {
-  }
-  eventsPopup() {
-    docu
+// Настройка шаблона
+import templateConfig from '../template.config.js'
+// Логгер
+import logger from './logger.js'
+
+import fs from 'fs'
+
+const KEY = templateConfig.novaposhta.key
+
+async function getData(request, file) {
+	const url = 'https://api.novaposhta.ua/v2.0/json/'
+	try {
+		const response = await fetch(url, {
+			method: "POST",
+			body: JSON.stringify(request)
+		})
+		if (!response.ok) {
+			throw new Error(`Response status: ${response.status}`)
+		}
+		const responseData = await response.json()
+		writeData(responseData.data, file)
+	} catch (error) {
+		logger(`(!)Ошибка запроса данных из НП: ${error.message}`)
+	}
+}
+
+function writeData(responseData, file) {
+	!fs.existsSync('src/files/novaposhta') ? fs.mkdirSync(`src/files/novaposhta`) : null
+	if (!fs.existsSync(file)) {
+		fs.writeFileSync(file, JSON.stringify(responseData, null, 2))
+	}
+}
+
+export function novaPoshta() {
+	const requestAreas = {
+		apiKey: KEY,
+		modelName: "AddressGeneral",
+		calledMethod: "getCities",
+		methodProperties: {}
+	}
+	const areasFile = `src/files/novaposhta/cities.json`
+	getData(requestAreas, areasFile)
+
+	const requestWarehouses = {
+		apiKey: KEY,
+		modelName: "AddressGeneral",
+		calledMethod: "getWarehouses",
+		methodProperties: {}
+	}
+	const warehousesFile = `src/files/novaposhta/warehouses.json`
+	getData(requestWarehouses, warehousesFile)
+
+}

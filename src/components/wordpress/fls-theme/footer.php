@@ -1,1 +1,35 @@
-const d={Android:function(){return navigator.userAgent.match(/Android/i)},BlackBerry:function(){return navigator.userAgent.match(/BlackBerry/i)},iOS:function(){return navigator.userAgent.match(/iPhone|iPad|iPod/i)},Opera:function(){return navigator.userAgent.match(/Opera Mini/i)},Windows:function(){return navigator.userAgent.match(/IEMobile/i)},any:function(){return d.Android()||d.BlackBerry()||d.iOS()||d.Opera()||d.Windows()}};function p(){d.any()&&document.documentElement.setAttribute("data-fls-touch","")}function f(){document.documentElement.hasAttribute("data-fls-preloader-loading")||window.addEventListener("load",function(){setTimeout(function(){document.documentElement.setAttribute("data-fls-loaded","")},0)})}function h(){if(location.hash)return location.hash.replace("#","")}let m=(e,o=500,t=0)=>{e.classList.contains("--slide")||(e.classList.add("--slide"),e.style.transition
+<?php
+/**
+ * The template for displaying the footer
+ *
+ * Contains the closing of the #content div and all content after.
+ *
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
+ * @package FLS
+ */
+
+?>
+
+	<footer id="colophon" class="site-footer">
+
+		<div class="site-info">
+			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'fls' ) ); ?>">
+				<?php
+				/* translators: %s: CMS name, i.e. WordPress. */
+				printf( esc_html__( 'Proudly powered by %s', 'fls' ), 'WordPress' );
+				?>
+			</a>
+			<span class="sep"> | </span>
+				<?php
+				/* translators: 1: Theme name, 2: Theme author. */
+				printf( esc_html__( 'Theme: %1$s by %2$s.', 'fls' ), 'fls', '<a href="https://template.fls.guru/">YEVHEN ANDRIKANYCH</a>' );
+				?>
+		</div><!-- .site-info -->
+	</footer><!-- #colophon -->
+</div><!-- #page -->
+
+<?php wp_footer(); ?>
+
+</body>
+</html>

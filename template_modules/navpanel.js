@@ -1,66 +1,70 @@
-alidate.validateInput(originalSelect);
-    }
-    if (originalSelect.hasAttribute("data-fls-select-submit") && originalSelect.value) {
-      let tempButton = document.createElement("button");
-      tempButton.type = "submit";
-      originalSelect.closest("form").append(tempButton);
-      tempButton.click();
-      tempButton.remove();
-    }
-    const selectItem = originalSelect.parentElement;
-    this.selectCallback(selectItem, originalSelect);
-  }
-  // Обработчик disabled
-  selectDisabled(selectItem, originalSelect) {
-    if (originalSelect.disabled) {
-      selectItem.classList.add(this.selectClasses.classSelectDisabled);
-      this.getSelectElement(selectItem, this.selectClasses.classSelectTitle).selectElement.disabled = true;
-    } else {
-      selectItem.classList.remove(this.selectClasses.classSelectDisabled);
-      this.getSelectElement(selectItem, this.selectClasses.classSelectTitle).selectElement.disabled = false;
-    }
-  }
-  // Обработчик поиска по элементам списка
-  searchActions(selectItem) {
-    const selectInput = this.getSelectElement(selectItem, this.selectClasses.classSelectInput).selectElement;
-    const selectOptions = this.getSelectElement(selectItem, this.selectClasses.classSelectOptions).selectElement;
-    selectInput.addEventListener("input", () => {
-      const inputValue = selectInput.value.toLowerCase();
-      const selectOptionsItems = selectOptions.querySelectorAll(`.${this.selectClasses.classSelectOption}`);
-      selectOptionsItems.forEach((item) => {
-        const itemText = item.textContent.toLowerCase();
-        item.hidden = !itemText.includes(inputValue);
-      });
-      if (selectOptions.hidden) {
-        this.selectAction(selectItem);
-      }
-    });
-  }
-  // Коллбэк-функция
-  selectCallback(selectItem, originalSelect) {
-    document.dispatchEvent(new CustomEvent("selectCallback", {
-      detail: {
-        select: originalSelect
-      }
-    }));
-  }
+// Настройка шаблона
+import templateConfig from '../template.config.js'
+// Логгер
+import logger from './logger.js'
+
+import { globSync } from 'glob'
+import fs from 'node:fs';
+import { normalizePath } from 'vite'
+
+const isProduction = process.env.NODE_ENV === 'production'
+
+export function navPanel() {
+	const htmlFiles = globSync('./src/*.html', { ignore: [`./src/${templateConfig.devcomponents.filename}`] })
+	const isIconFont = fs.existsSync('src/assets/svgicons/preview/iconfont.html')
+	if (htmlFiles.length > 1 || isIconFont || templateConfig.projectpage.enable || (templateConfig.devcomponents.enable && !isProduction)) {
+		let menu = `<ul id="fls-dev-panel">`
+		htmlFiles.forEach(async htmlFile => {
+			htmlFile = normalizePath(htmlFile)
+			const href = htmlFile.replace('src/', '')
+			const name = href.replace('.html', '')
+			menu += `<li><a href="${href}">${name}</a></li>`
+		});
+		if (!isProduction) {
+			templateConfig.projectpage.enable ? menu += `<li><hr></li><li><a target="_blank" href="${templateConfig.projectpage.template.replace('src', '')}">Шаблон страницы проекта</a></li>` : ''
+			isIconFont ? menu += `<li><hr></li><li><a target="_blank" href="/assets/svgicons/preview/iconfont.html">Иконковый шрифт</a></li>` : ''
+			templateConfig.devcomponents.enable ? menu += `<li><hr></li><li><a target="_blank" href="${templateConfig.devcomponents.filename}">Разработка компонентов</a></li>` : ''
+		}
+		menu += `</ul>`
+		menu += `<style>
+			#fls-dev-panel{
+				position: fixed;
+				${templateConfig.navpanel.position === 'left' ? 'left: 10px;' : 'right: 10px;'}
+				${templateConfig.navpanel.position === 'left' ? 'padding: 15px 25px 15px 15px;' : 'padding: 15px 15px 15px 25px;'}
+				${templateConfig.navpanel.position === 'left' ? 'border-radius: 0 10px 10px 0;' : 'border-radius: 10px 0 0 10px;'}
+				top: 10%;
+				color: ${templateConfig.navpanel.color};
+				background-color: ${templateConfig.navpanel.background};
+				transform: translate(${templateConfig.navpanel.position === 'left' ? '-100%' : '100%'}, 0px);
+				max-height: 80svh;
+				overflow: auto;
+				transition: all ${templateConfig.navpanel.transition}ms;
+				z-index: 9999;
+				font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+			}
+			#fls-dev-panel li{
+				list-style:none;
+			}
+			#fls-dev-panel hr{
+				border-bottom: 1px solid;
+			}
+			#fls-dev-panel:hover{
+				${templateConfig.navpanel.position === 'left' ? 'left: 0px;' : 'right: 0px;'}
+				transform: translate(0, 0);
+			}
+			#fls-dev-panel a{
+				text-decoration: none;
+				color: inherit;
+			}
+			#fls-dev-panel a:hover {
+				text-decoration: underline;
+			}
+			#fls-dev-panel li:not(:last-child) {
+				margin-bottom: 10px;
+			}
+		</style>`
+		return menu//`<script>window.addEventListener('DOMContentLoaded',()=>{document.body.insertAdjacentHTML('beforeend',\`${menu}\`)});</script>`
+	} else {
+		return ''
+	}
 }
-document.querySelector("select[data-fls-select]") ? window.addEventListener("load", () => window.flsSelect = new SelectConstructor({})) : null;
-class Popup {
-  constructor(options) {
-    let config3 = {
-      logging: true,
-      init: true,
-      // Для кнопок
-      attributeOpenButton: "data-fls-popup-link",
-      // Атрибут для кнопки, которая вызывает попап
-      attributeCloseButton: "data-fls-popup-close",
-      // Атрибут для кнопки, которая закрывает попап
-      // Для сторонних объектов
-      fixElementSelector: "[data-fls-lp]",
-      // Атрибут для элементов с левым паддингом (которые fixed)
-      // Для объекта попапа
-      attributeMain: "data-fls-popup",
-      youtubeAttribute: "data-fls-popup-youtube",
-      // Атрибут для кода youtube
-      youtubePlaceAttribute: "

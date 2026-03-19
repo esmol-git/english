@@ -1,133 +1,158 @@
-ideo}?rel=0&showinfo=0&autoplay=1`;
-          const iframe = document.createElement("iframe");
-          const autoplay = this.options.setAutoplayYoutube ? "autoplay;" : "";
-          iframe.setAttribute("allowfullscreen", "");
-          iframe.setAttribute("allow", `${autoplay}; encrypted-media`);
-          iframe.setAttribute("src", urlVideo);
-          if (!this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`)) {
-            this.targetOpen.element.querySelector("[data-fls-popup-content]").setAttribute(`${this.options.youtubePlaceAttribute}`, "");
-          }
-          this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`).appendChild(iframe);
-        }
-        if (this.options.hashSettings.location) {
-          this._getHash();
-          this._setHash();
-        }
-        this.options.on.beforeOpen(this);
-        document.dispatchEvent(new CustomEvent("beforePopupOpen", {
-          detail: {
-            popup: this
-          }
-        }));
-        this.targetOpen.element.setAttribute(this.options.classes.popupActive, "");
-        document.documentElement.setAttribute(this.options.classes.bodyActive, "");
-        if (!this._reopen) {
-          !this.bodyLock ? bodyLock() : null;
-        } else this._reopen = false;
-        this.targetOpen.element.setAttribute("aria-hidden", "false");
-        this.previousOpen.selector = this.targetOpen.selector;
-        this.previousOpen.element = this.targetOpen.element;
-        this._selectorOpen = false;
-        this.isOpen = true;
-        setTimeout(() => {
-          this._focusTrap();
-        }, 50);
-        this.options.on.afterOpen(this);
-        document.dispatchEvent(new CustomEvent("afterPopupOpen", {
-          detail: {
-            popup: this
-          }
-        }));
-      }
-    }
-  }
-  close(selectorValue) {
-    if (selectorValue && typeof selectorValue === "string" && selectorValue.trim() !== "") {
-      this.previousOpen.selector = selectorValue;
-    }
-    if (!this.isOpen || !bodyLockStatus) {
-      return;
-    }
-    this.options.on.beforeClose(this);
-    document.dispatchEvent(new CustomEvent("beforePopupClose", {
-      detail: {
-        popup: this
-      }
-    }));
-    if (this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`)) {
-      setTimeout(() => {
-        this.targetOpen.element.querySelector(`[${this.options.youtubePlaceAttribute}]`).innerHTML = "";
-      }, 500);
-    }
-    this.previousOpen.element.removeAttribute(this.options.classes.popupActive);
-    this.previousOpen.element.setAttribute("aria-hidden", "true");
-    if (!this._reopen) {
-      document.documentElement.removeAttribute(this.options.classes.bodyActive);
-      !this.bodyLock ? bodyUnlock() : null;
-      this.isOpen = false;
-    }
-    this._removeHash();
-    if (this._selectorOpen) {
-      this.lastClosed.selector = this.previousOpen.selector;
-      this.lastClosed.element = this.previousOpen.element;
-    }
-    this.options.on.afterClose(this);
-    document.dispatchEvent(new CustomEvent("afterPopupClose", {
-      detail: {
-        popup: this
-      }
-    }));
-    setTimeout(() => {
-      this._focusTrap();
-    }, 50);
-  }
-  // Получение хеша 
-  _getHash() {
-    if (this.options.hashSettings.location) {
-      this.hash = `#${this.targetOpen.selector}`;
-    }
-  }
-  _openToHash() {
-    let classInHash = window.location.hash.replace("#", "");
-    const openButton = document.querySelector(`[${this.options.attributeOpenButton}="${classInHash}"]`);
-    if (openButton) {
-      this.youTubeCode = openButton.getAttribute(this.options.youtubeAttribute) ? openButton.getAttribute(this.options.youtubeAttribute) : null;
-    }
-    if (classInHash) this.open(classInHash);
-  }
-  // Установка хеша
-  _setHash() {
-    history.pushState("", "", this.hash);
-  }
-  _removeHash() {
-    history.pushState("", "", window.location.href.split("#")[0]);
-  }
-  _focusCatch(e) {
-    const focusable = this.targetOpen.element.querySelectorAll(this._focusEl);
-    const focusArray = Array.prototype.slice.call(focusable);
-    const focusedIndex = focusArray.indexOf(document.activeElement);
-    if (e.shiftKey && focusedIndex === 0) {
-      focusArray[focusArray.length - 1].focus();
-      e.preventDefault();
-    }
-    if (!e.shiftKey && focusedIndex === focusArray.length - 1) {
-      focusArray[0].focus();
-      e.preventDefault();
-    }
-  }
-  _focusTrap() {
-    const focusable = this.previousOpen.element.querySelectorAll(this._focusEl);
-    if (!this.isOpen && this.lastFocusEl) {
-      this.lastFocusEl.focus();
-    } else {
-      focusable[0].focus();
-    }
-  }
+// Настройка шаблона
+import templateConfig from '../template.config.js'
+import logger from './logger.js'
+import { Glob, globSync } from 'glob'
+import fs from 'fs'
+import { cp } from 'fs/promises'
+import { normalizePath } from 'vite'
+
+// PHP сервер
+import phpServer from 'php-server';
+// Подключение файлов в PHP-файлы темы
+import wpAssetsInclude from './wordpress/assets-include.js'
+
+const isProduction = process.env.NODE_ENV === 'production'
+const isWp = process.argv.includes('--wp')
+
+export const phpPlugins = [
+	// PHP-сервер
+	...((templateConfig.php.enable) ? [{
+		name: 'php-server',
+		async configureServer(server) {
+			const phpRun = await phpServer({
+				hostname: templateConfig.php.hostname,
+				base: templateConfig.php.base,
+				binary: templateConfig.php.binary,
+				port: templateConfig.php.port,
+				ini: templateConfig.php.ini,
+				open: false
+			});
+			logger('PHP-сервер запущен')
+		}
+	}] : []),
+	// Копировать используемые PHP-файлы в dist
+	...((isProduction) ? [{
+		name: 'copy-php-to-dist',
+		apply: 'build',
+		enforce: 'pre',
+		writeBundle: () => {
+			const htmlFiles = globSync(`dist/*.html`)
+			const regex = new RegExp(`\\bphp/sendmail\\b`, 'gi')
+			let copy = false
+			htmlFiles.forEach(htmlFile => {
+				let htmlFileCode = fs.readFileSync(htmlFile, 'utf-8')
+				if (regex.test(htmlFileCode)) {
+					if (!copy) {
+						copyFolder('src/php/sendmail')
+						copy = true
+					}
+					htmlFileCode = htmlFileCode.replace(regex, '/sendmail')
+					fs.writeFileSync(htmlFile, htmlFileCode)
+				}
+			})
+		}
+	}] : []),
+	...((isWp && isProduction && templateConfig.images.svgsprite) ? [{
+		name: 'path-to-sprite',
+		apply: 'build',
+		enforce: 'post',
+		writeBundle: async () => {
+			wpPathToSprite()
+		}
+	}] : []),
+	...((isWp && isProduction) ? [{
+		name: 'add-assets-to-theme',
+		apply: 'build',
+		enforce: 'post',
+		writeBundle: () => {
+			wpAssetsInclude()
+		}
+	}] : []),
+	...((isWp && !isProduction) ? [{
+		...wpAssetsInclude()
+	}] : []),
+	...((isWp) ? [{
+		...insertModules(),
+		...insertStyles()
+	}] : []),
+	...((isWp) ? [{
+		name: 'wp-insert-modules',
+		handleHotUpdate({ file }) {
+			if (file.endsWith('.php') || file.includes('fls-theme')) {
+				insertModules()
+			}
+		}
+	}] : []),
+]
+
+async function insertModules() {
+	const modules = new Set()
+	const phpFiles = new globSync(`src/components/wordpress/fls-theme/**/*.php`)
+	const moduleJSFiles = new Glob(`src/components/**/*.js`, { ignore: ['**/_*.*', '**/plugins/**', '**/pages/**', '**/wordpress/**'] })
+	const modulePlugins = new Map()
+
+	for (let moduleJSFile of moduleJSFiles) {
+		moduleJSFile = normalizePath(moduleJSFile).replace('src', '')
+		const moduleName = moduleJSFile.split('/').pop().replace('.js', '')
+		const pluginFiles = globSync(`src/components/*/${moduleName}/plugins/**/*.js`)
+		modulePlugins.set(moduleName, pluginFiles.map(plugin => normalizePath(plugin).replace('src', '')))
+	}
+
+	for (let file of phpFiles) {
+		let html = fs.readFileSync(file, 'UTF-8')
+		findModule(html)
+	}
+
+	function findModule(html) {
+		for (let moduleJSFile of moduleJSFiles) {
+			moduleJSFile = normalizePath(moduleJSFile).replace('src', '')
+			const moduleName = moduleJSFile.split('/').pop().replace('.js', '')
+			const regex = new RegExp(`\\bdata-fls-${moduleName}\\b`)
+			if (regex.test(html)) {
+				modules.add(`import '${moduleJSFile}'`)
+				// Проверяем, есть ли плагины для этого модуля
+				const curentModulePlugins = modulePlugins.get(moduleName)
+				if (curentModulePlugins) {
+					curentModulePlugins.forEach(curentModulePlugin => {
+						const pluginName = curentModulePlugin.split('/').pop().replace('.js', '')
+						const pluginRegex = new RegExp(`\\bdata-fls-${moduleName}-${pluginName}\\b`)
+						if (pluginRegex.test(html)) {
+							modules.add(`import '${curentModulePlugin}'`)
+						}
+					})
+				}
+			}
+
+		}
+	}
+
+	fs.writeFile('src/components/wordpress/fls-wp-modules.js', Array.from(modules).join('\n'), () => { })
 }
-document.querySelector("[data-fls-popup]") ? window.addEventListener("load", () => window.flsPopup = new Popup({})) : null;
-function menuInit() {
-  document.addEventListener("click", function(e) {
-    if (bodyLockStatus && e.target.closest("[data-fls-menu]")) {
-      bodyLockToggle();
-      document.documentElement.toggleAttribute("data-fls-menu-open");
-    }
+async function insertStyles() {
+	const styles = []
+	styles.push(templateConfig.styles.tailwindcss ? `import '@styles/libs/tailwind.css'` : `import '@styles/libs/reset.css'`)
+	styles.push(`import '@styles/style.scss'`)
+	fs.writeFile('src/components/wordpress/fls-wp-styles.js', styles.join('\n'), () => { })
+}
+function copyFolder(dir) {
+	try {
+		cp(dir, dir.replace('src/php/', 'dist/'), {
+			recursive: true,
+			force: false,
+			preserveTimestamps: true,
+		});
+	} catch (error) {
+		console.log(error);
+	}
+}
+function wpPathToSprite() {
+	const phpFiles = new globSync(`src/components/wordpress/fls-theme/*.php`)
+	phpFiles.forEach(phpFile => {
+		let content = fs.readFileSync(phpFile, 'utf-8')
+		// Пути SVG-спрайта
+		if (content.includes('xlink:href="#')) {
+			content = content.replace(new RegExp('xlink:href="#', 'gi'), `xlink:href="/wp-content/themes/fls-theme/assets/img/spritemap.svg#`)
+		}
+		fs.writeFileSync(phpFile, content, 'utf-8');
+	})
+}
